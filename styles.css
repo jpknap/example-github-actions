@@ -1,0 +1,23 @@
+.container {
+    text-align: center;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.salto {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
