@@ -33,12 +33,16 @@ jobs:
         run: |
           cd spa-static/
           npm install
+
+      - name: Extract repository name
+        id: repo_name
+        run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
       
       # Compilar el proyecto Angular
       - name: Build the project
         run: |
           cd spa-static/
-          ng build --base-href "/${{ github.repository }}/"
+          ng build --base-href "/${{ env.REPO_NAME }}/"
 
       # Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
