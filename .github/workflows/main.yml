@@ -38,7 +38,7 @@ jobs:
       - name: Build the project
         run: |
           cd spa-static/
-          ng build 
+          ng build --prod --base-href "/${{ github.repository }}/"
 
       # Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
