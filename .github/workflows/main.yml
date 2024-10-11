@@ -38,7 +38,7 @@ jobs:
       - name: Build the project
         run: |
           cd spa-static/
-          ng build --prod  # Usamos Angular CLI global
+          ng build 
 
       # Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
