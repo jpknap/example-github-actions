@@ -13,16 +13,36 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      # Clonar el repositorio
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Instalar Node.js (es necesario para Angular)
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Especifica la versión de Node.js que uses
+
+      # Instalar Angular CLI globalmente
+      - name: Install Angular CLI
+        run: |
+          npm install -g @angular/cli
+
+      # Instalar dependencias
+      - name: Install dependencies
+        run: |
+          cd spa-static/
+          npm install
+      
+      # Compilar el proyecto Angular
       - name: Build the project
         run: |
-          mkdir -p dist
-          cp -r src/* dist/
+          cd spa-static/
+          ng build --prod  # Usamos Angular CLI global
 
+      # Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: spa-static/dist/spa-static/browser  # Carpeta generada por Angular
