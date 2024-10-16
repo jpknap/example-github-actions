@@ -6,7 +6,18 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:coverage": "ng test --code-coverage",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "lint": "ng lint"
+  },
+  "nyc": {
+    "branches": 80,
+    "functions": 80,
+    "lines": 80,
+    "statements": 80
   },
   "private": true,
   "dependencies": {
@@ -26,13 +37,18 @@
     "@angular-devkit/build-angular": "^18.2.8",
     "@angular/cli": "^18.2.8",
     "@angular/compiler-cli": "^18.2.0",
+    "@cypress/schematic": "^2.5.2",
     "@types/jasmine": "~5.1.0",
+    "angular-eslint": "18.3.1",
+    "eslint": "^9.9.1",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.2"
+    "nyc": "^17.1.0",
+    "typescript": "~5.5.2",
+    "typescript-eslint": "8.2.0"
   }
 }
