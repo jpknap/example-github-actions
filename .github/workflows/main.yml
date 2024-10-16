@@ -39,7 +39,7 @@ jobs:
       - name: Run Angular Unit Tests
         run: |
           cd spa-static/
-          npm run test -- --watch=false --code-coverage
+          npm run test -- --watch=false --code-coverage --browsers=ChromeHeadless
 
       - name: List .nyc_output
         run: |
