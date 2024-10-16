@@ -13,38 +13,54 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # Clonar el repositorio
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Instalar Node.js (es necesario para Angular)
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Especifica la versión de Node.js que uses
+          node-version: '18' 
 
-      # Instalar Angular CLI globalmente
       - name: Install Angular CLI
         run: |
           npm install -g @angular/cli
 
-      # Instalar dependencias
       - name: Install dependencies
         run: |
           cd spa-static/
           npm install
 
+      - name: Run Linter
+        run: |
+          cd spa-static/
+          npm run lint
+
+      - name: Run Angular Unit Tests
+        run: |
+          cd spa-static/
+          npm run test -- --watch=false --code-coverage
+
+      - name: List .nyc_output
+        run: |
+          cd spa-static/
+          ls -la .nyc_output || echo ".nyc_output does not exist"
+
+      - name: Check Coverage
+        run: | 
+          cd spa-static/
+          npx nyc report --reporter=html
+          npx nyc check-coverage --branches 80 --functions 80 --lines 80 --statements 80
+
       - name: Extract repository name
         id: repo_name
         run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
       
-      # Compilar el proyecto Angular
       - name: Build the project
         run: |
           cd spa-static/
           ng build --base-href "/${{ env.REPO_NAME }}/"
 
-      # Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
