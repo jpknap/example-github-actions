@@ -10,12 +10,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'spa-static';
-
-  holamundo() {
-    console.log('hola mundo');
-    console.log('hola mundo');
-    console.log('hola mundo');
-    console.log('hola mundo');
-    console.log('hola mundo');
+ NAME_FUNCTION(params: any) {
+    
   }
+
 }

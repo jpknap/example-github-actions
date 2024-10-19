@@ -14,9 +14,13 @@
     "lint": "ng lint"
   },
   "nyc": {
+    "reporter": [
+      "html",
+      "text-summary"
+    ],
+    "lines": 80,
     "branches": 80,
     "functions": 80,
-    "lines": 80,
     "statements": 80
   },
   "private": true,
@@ -47,6 +51,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "karma-typescript": "^5.5.4",
     "nyc": "^17.1.0",
     "typescript": "~5.5.2",
     "typescript-eslint": "8.2.0"
